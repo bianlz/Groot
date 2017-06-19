@@ -1,15 +1,26 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import Login from '@/components/login/login'
+import Login from '@/components/view/login/login'
+import Dashboard from '@/components/view/dashboard/dashboard'
+import User from '@/components/view/user/user'
 
-Vue.use(Router)
 
-export default new Router({
-  routes: [
+let routes = [
     {
       path: '/',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard,
+      children: [
+          { path: '/page4', component: User, name: '页面4' }
+      ]
     }
   ]
-})
+
+
+
+
+export default routes;

@@ -1,21 +1,21 @@
 <template>
   <div class="container">
+    <img src="../../../assets/logo.png">
     <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 login-form">
-            
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12">
                         <form id="authentication" method="post" class="login_validator">
                             <div class="form-group">
-                                <label for="email" class="sr-only"> E-mail</label>
-                                <input type="text" class="form-control  form-control-lg" id="email" name="username"
-                                       placeholder="E-mail">
+                                <label for="email" class="sr-only">userName</label>
+                                <input type="text" class="form-control  form-control-lg" id="username" name="username"
+                                       placeholder="请输入账号" v-model="user.username">
                             </div>
                             <div class="form-group">
                                 <label for="password" class="sr-only">Password</label>
                                 <input type="password" class="form-control form-control-lg" id="password"
-                                       name="password" placeholder="Password">
+                                       name="password" placeholder="请输入密码" v-model="user.password">
                             </div>
                             <div class="form-group checkbox">
                                 <label for="remember">
@@ -23,23 +23,35 @@
                                 </label>
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Sign In" class="btn btn-primary btn-block"/>
+                                <input value="Sign In" class="btn btn-primary btn-block" v-on:click="handleLogin()"/>
                             </div>
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
   </div>
 </template>
 <script>
+import {login} from "../../api/api";
 export default {
-  name: 'hello',
+  name: 'login',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      user : {
+        username : '',
+        password : ''
+      }
+    }
+  },
+  methods:{
+    handleLogin:function(){
+      var loginParams = { username : this.user.username, password : this.user.password};
+      console.log("loginParams : "+loginParams)
+      login(loginParams).then(data => {
+          console.log(data);
+      });
     }
   }
 }
@@ -64,4 +76,5 @@ li {
 a {
   color: #42b983;
 }
+
 </style>
