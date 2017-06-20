@@ -1,8 +1,9 @@
 <template>
   <div class="container">
-    <img src="../../../assets/logo.png">
+    
     <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 login-form">
+            <img src="../../../assets/logo.png">
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12">
@@ -50,7 +51,13 @@ export default {
       var loginParams = { username : this.user.username, password : this.user.password};
       console.log("loginParams : "+loginParams)
       login(loginParams).then(data => {
-          console.log(data);
+          if(data.code == 10000){
+            this.$router.push({
+              path: '/dashboard'
+            })
+          }else{
+            alert(data.message)
+          }
       });
     }
   }
