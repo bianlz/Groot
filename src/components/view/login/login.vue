@@ -2,8 +2,9 @@
   <div class="container">
     
     <div class="row">
+        <img  class="center-block" src="../../../assets/logo.png">
         <div class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 login-form">
-            <img src="../../../assets/logo.png">
+            
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12">
@@ -17,11 +18,6 @@
                                 <label for="password" class="sr-only">Password</label>
                                 <input type="password" class="form-control form-control-lg" id="password"
                                        name="password" placeholder="请输入密码" v-model="user.password">
-                            </div>
-                            <div class="form-group checkbox">
-                                <label for="remember">
-                                    <input type="checkbox" name="remember" id="remember">&nbsp; Remember Me
-                                </label>
                             </div>
                             <div class="form-group">
                                 <input value="Sign In" class="btn btn-primary btn-block" v-on:click="handleLogin()"/>
