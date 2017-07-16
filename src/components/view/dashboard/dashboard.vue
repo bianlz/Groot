@@ -2,9 +2,9 @@
 	<div>
 		<navheader></navheader>
 		<div class="wrapper row-offcanvas row-offcanvas-left">
-	    	<menubar></menubar>
+	    <menubar :img='img' :name='name' :menus='menus' ></menubar>
 			<contents></contents>
-	    </div>
+	  </div>
 	</div>
 </template>
 <script>
@@ -15,8 +15,19 @@ import contents from '@/components/view/dashboard/content'
 
 export default {
   name: 'Dashboard',
+  prop:{img:'',name:'',menus:''},
   data () {
-    return {};
+    return {
+    	img:'',
+    	name:'',
+      menus:''
+    };
+  },
+  mounted:function(){
+  	this.img = this.$route.query.img;
+  	this.name = this.$route.query.name;
+  	// console.log(JSON.stringify(this.$route.params));
+   //  this.img = this.$route.img;
   },
   components:{navheader,menubar,contents}
 }

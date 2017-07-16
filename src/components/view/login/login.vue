@@ -1,3 +1,4 @@
+
 <template>
   <div class="container">
     
@@ -32,6 +33,7 @@
 </template>
 <script>
 import {login} from "../../api/api";
+import * as types from "@/store/type"
 export default {
   name: 'login',
   data () {
@@ -45,14 +47,19 @@ export default {
   methods:{
     handleLogin:function(){
       var loginParams = { username : this.user.username, password : this.user.password};
-      console.log("loginParams : "+loginParams)
       login(loginParams).then(data => {
-          if(data.code == 10000){
+          if(data.code == 10000 && data.data.uid && data.data.sid ){
+            this.$store.commit(types.LOGIN, {sid:data.data.sid,uid:data.data.uid,img:data.data.img})
             this.$router.push({
-              path: '/dashboard'
+              path: 'dashboard',
+              query:{img:data.data.img,
+              name:data.data.name,
+              menus:data.data.menus}//data.data.img}
             })
           }else{
-            alert(data.message)
+            if(data.message){
+              alert(data.message)  
+            }
           }
       });
     }

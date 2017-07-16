@@ -1,15 +1,15 @@
 <template>
     <header class="header">
         <nav class="navbar navbar-static-top" role="navigation">
-            <a href="index.html" class="logo">
+            <a href="/" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the marginin -->
                 <img src="static/img/logo.png" alt="logo"/>
             </a>
             <!-- Header Navbar: style can be found in header-->
             <!-- Sidebar toggle button-->
             <div>
-                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button"> <i
-                        class="fa fa-fw ti-menu"></i>
+                <a v-on:click="toggleSideBar" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <i class="fa fa-fw ti-menu"></i>
                 </a>
             </div>
             <div class="navbar-right">
@@ -148,7 +148,22 @@
       name: 'navheader',
       data () {
         return {};
+        },
+      methods:{
+        toggleSideBar:function(){
+            //If window is small enough, enable sidebar push menu
+            if ($(window).width() <= 992) {
+                $('.row-offcanvas').toggleClass('active').toggleClass("relative");
+                $('.left-side').removeClass("collapse-left");
+                $(".right-side").removeClass("strech");
+
+            } else {
+                //Else, enable content streching
+                $('.left-side').toggleClass("collapse-left");
+                $(".right-side").toggleClass("strech");
+            }
         }
+      }
     }
 </script>
 

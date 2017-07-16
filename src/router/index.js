@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Login from '@/components/view/login/login'
 import Dashboard from '@/components/view/dashboard/dashboard'
-import User from '@/components/view/user/user'
+import Edit from '@/components/view/user/edit'
 
 
 let routes = [
@@ -13,9 +13,12 @@ let routes = [
     {
       path: '/dashboard',
       name: 'dashboard',
+      meta:{
+        requireAuth:true
+      },
       component: Dashboard,
       children: [
-          { path: '/page4', component: User, name: '页面4' }
+          { path: '/dashboard/edit', component: Edit, name: '用户修改' ,meta:{requireAuth:true}}
       ]
     }
   ]
